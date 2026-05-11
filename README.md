@@ -15,11 +15,27 @@ X-Plane 12 Lua driver for the [Honeycomb Bravo Lite](https://honeycomb-aerospace
 - Honeycomb Bravo Lite throttle quadrant
 - Lua's `ffi` library (included with X-Plane's Lua environment)
 - Linux (uses `hidraw` for HID device access)
+- udev rule for device permissions (`99-honeycomb.rules`)
 
 ## Installation
 
-1. Copy `bravo_lite_leds.lua` into your X-Plane `Resources/plugins` directory.
-2. Start X-Plane — the script will auto-discover the Bravo Lite and begin updating the LEDs.
+### 1. Install the udev rule (Linux)
+
+Copy the udev rule to allow access to the Bravo Lite device:
+
+```bash
+sudo cp 99-honeycomb.rules /etc/udev/rules.d/
+sudo udevadm control --reload-rules
+sudo udevadm trigger
+```
+
+### 2. Install the Lua script
+
+Copy `bravo_lite_leds.lua` into your X-Plane `Resources/plugins` directory.
+
+### 3. Start X-Plane
+
+The script will auto-discover the Bravo Lite and begin updating the LEDs.
 
 ## How It Works
 
